@@ -18,7 +18,7 @@ Simple GTK2 C++ application template with a fully configured build system for Po
    The path ***for the “default” configuration*** is as follows:
    
     ```shell
-    cd mkdir -p $HOME/.local/var/pmbootstrap/cache_git/pmaports
+    cd $HOME/.local/var/pmbootstrap/cache_git/pmaports
     mkdir -p community
     ```
 6. Clone the template into the directory you created in the previous step
