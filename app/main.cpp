@@ -17,20 +17,18 @@ GtkWidget* new_label(const char* text, const char* font_str, GdkColor *color) {
 }
 GtkWidget* new_button(const char* text, const char* font_str, GdkColor *color_fg, GdkColor *color_bg) {
     GtkWidget *event_box = gtk_event_box_new();
+    gtk_widget_set_events(event_box, GDK_BUTTON_PRESS_MASK);
 
-    // Цвет фона
     if (color_bg != NULL) {
         gtk_widget_modify_bg(event_box, GTK_STATE_NORMAL, color_bg);
     }
 
-    // Контейнер с отступами внутри "кнопки"
     GtkWidget *frame = gtk_frame_new(NULL);
     gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_OUT);
     gtk_container_add(GTK_CONTAINER(event_box), frame);
 
     GtkWidget *label = gtk_label_new(text);
 
-    // Шрифт и цвет текста
     if (font_str != NULL) {
         PangoFontDescription *font_desc = pango_font_description_from_string(font_str);
         gtk_widget_modify_font(label, font_desc);
@@ -41,7 +39,6 @@ GtkWidget* new_button(const char* text, const char* font_str, GdkColor *color_fg
         gtk_widget_modify_fg(label, GTK_STATE_NORMAL, color_fg);
     }
 
-    // Контейнер с отступами для текста
     GtkWidget *alignment = gtk_alignment_new(0.5, 0.5, 0, 0);
     gtk_container_set_border_width(GTK_CONTAINER(alignment), 10); // padding
     gtk_container_add(GTK_CONTAINER(alignment), label);

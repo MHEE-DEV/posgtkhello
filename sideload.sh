@@ -18,10 +18,8 @@ if [[ ! -f "$APK_PATH" ]]; then
     exit 1
 fi
 
-# Отправляем .apk на устройство
-scp "$PMBOOTSTRAP_DIR/packages/$CHANNEL/$arch/$APK_NAME" "$SSH_USER@$SSH_HOST:$DIR_SIDELOAD"
+scp -P $SSH_PORT "$PMBOOTSTRAP_DIR/packages/$CHANNEL/$arch/$APK_NAME" "$SSH_USER@$SSH_HOST:$DIR_SIDELOAD"
 
-# Спрашиваем об установке
 ask_continue "Do you want to install the package on the device?"
 if [[ $? -ne 0 ]]; then
     echo "Ok, the package will not be installed."
@@ -29,5 +27,5 @@ if [[ $? -ne 0 ]]; then
     exit 1
 fi
 
-ssh -t "$SSH_USER@$SSH_HOST" "sudo apk add $DIR_SIDELOAD/$APK_NAME --allow-untrusted"
+ssh -t -p $SSH_PORT "$SSH_USER@$SSH_HOST" "sudo apk add $DIR_SIDELOAD/$APK_NAME --allow-untrusted"
 echo "Done"
