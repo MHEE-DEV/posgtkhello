@@ -13,16 +13,15 @@ Simple GTK2 C++ application template with a fully configured build system for Po
 > [!NOTE]
 > If it possible, use default paths when initializing the environment.<br />Otherwise, you will have to configure the paths in the ```config.sh``` file
 
-    ```shell
     pmbootstrap init
-    ```
 4. **Navigate to the pmaports directory** in the initialized environment and create a new directory.<br />
    The path ***for the “default” configuration*** is as follows:
+   
     ```shell
     cd mkdir -p $HOME/.local/var/pmbootstrap/cache_git/pmaports
     mkdir -p community
     ```
-5. Clone the template into the directory you created in the previous step
+6. Clone the template into the directory you created in the previous step
     ```shell
     cd community
     git clone https://github.com/progzone122/posgtkhello
