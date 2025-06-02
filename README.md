@@ -12,6 +12,7 @@ Simple GTK2 C++ application template with a fully configured build system for Po
 2. Customize the pmbootstrap environment **FOR YOUR DEVICE**
 > [!NOTE]
 > If it possible, use default paths when initializing the environment.<br />Otherwise, you will have to configure the paths in the ```config.sh``` file
+
     ```shell
     pmbootstrap init
     ```
