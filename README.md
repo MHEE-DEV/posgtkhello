@@ -10,18 +10,18 @@ Simple GTK2 C++ application template with a fully configured build system for Po
 ### Preparing
 1. Install pmbootstrap ([RTFM](https://wiki.postmarketos.org/wiki/Pmbootstrap/Installation))
 2. Customize the pmbootstrap environment **FOR YOUR DEVICE**
-    > [!NOTE]
-    > If it possible, use default paths when initializing the environment.<br />Otherwise, you will have to configure the paths in the ```config.sh``` file
+> [!NOTE]
+> If it possible, use default paths when initializing the environment.<br />Otherwise, you will have to configure the paths in the ```config.sh``` file
     ```shell
     pmbootstrap init
     ```
-3. **Navigate to the pmaports directory** in the initialized environment and create a new directory.<br />
+4. **Navigate to the pmaports directory** in the initialized environment and create a new directory.<br />
    The path ***for the “default” configuration*** is as follows:
     ```shell
     cd mkdir -p $HOME/.local/var/pmbootstrap/cache_git/pmaports
     mkdir -p community
     ```
-4. Clone the template into the directory you created in the previous step
+5. Clone the template into the directory you created in the previous step
     ```shell
     cd community
     git clone https://github.com/progzone122/posgtkhello
@@ -81,6 +81,7 @@ You'll **definitely love** using the ```sideload.sh``` script to **automatically
 3. Run the sideload.sh script and agree to automatically install the package via SSH
 <img src="docs/sideload.png" />
 4. Run the application
+
    ```shell
    posgtkhello
    ```
